@@ -8,4 +8,29 @@
     <item name="colorAccent">@color/colorAccent</item>
   </style>
 
+  <style name="AppTheme.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+  </style>
+
+  <style name="DetailsHorizontalLinearLayout">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:orientation">horizontal</item>
+    <item name="android:layout_marginBottom">15dp</item>
+  </style>
+
+  <style name="DetailsLabel">
+    <item name="android:layout_width">120dp</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textSize">@dimen/text_view_size</item>
+  </style>
+
+  <style name="DetailsValue">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">@dimen/text_view_size</item>
+  </style>
+
 </resources>

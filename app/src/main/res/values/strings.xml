@@ -1,3 +1,10 @@
 <resources>
-  <string name="app_name">PopularMoviesStageOne</string>
+  <string name="app_name">Popular Movies</string>
+  <string name="sort_by_popularity">Sort by: Popularity</string>
+  <string name="sort_by_rating">Sort by: Rating</string>
+  <string name="movies_error_message">Error loading movies. Try again.</string>
+  <string name="title_label">Title:</string>
+  <string name="popularity_label">Popularity:</string>
+  <string name="user_rating_label">User Rating:</string>
+  <string name="released_label">Released:</string>
 </resources>
