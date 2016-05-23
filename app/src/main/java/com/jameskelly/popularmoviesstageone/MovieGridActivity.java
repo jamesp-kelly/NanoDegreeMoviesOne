@@ -42,13 +42,14 @@ public class MovieGridActivity extends AppCompatActivity {
 
   private void loadMovies(MovieSort sort) {
     MovieDbApi movieDbApi = RestClient.MovieDbClient();
+    String apiKey = getString(R.string.api_key); //gradle file
 
     final Call<MovieDBResult> displayMovies;
 
     if (sort == MovieSort.POPULAR) {
-      displayMovies = movieDbApi.getPopularMovies(MovieDbApi.API_KEY);
+      displayMovies = movieDbApi.getPopularMovies(apiKey);
     } else {
-      displayMovies = movieDbApi.getTopRatedMovies(MovieDbApi.API_KEY);
+      displayMovies = movieDbApi.getTopRatedMovies(apiKey);
     }
 
     displayMovies.enqueue(new Callback<MovieDBResult>() {

@@ -8,7 +8,6 @@ import retrofit2.http.Query;
 public interface MovieDbApi {
 
   String BASE_URL = "https://api.themoviedb.org/";
-  String API_KEY = "[API_KEY]";
   public static final String POSTER_BASE_URL = "http://image.tmdb.org/t/p/";
   public static final String POSTER_DEFAULT_SIZE = "w500";
 
