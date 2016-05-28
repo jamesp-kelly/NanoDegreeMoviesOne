@@ -1,4 +1,4 @@
-package com.jameskelly.popularmoviesstageone;
+package com.jameskelly.popularmovies;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.jameskelly.popularmoviesstageone.model.Movie;
+import com.jameskelly.popularmovies.model.Movie;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 

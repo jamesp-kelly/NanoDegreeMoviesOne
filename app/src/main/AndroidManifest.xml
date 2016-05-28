@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jameskelly.popularmoviesstageone">
+    package="com.jameskelly.popularmovies">
 
   <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -11,7 +11,7 @@
       android:supportsRtl="true"
       android:theme="@style/AppTheme">
     <activity
-        android:name=".MovieGridActivity"
+        android:name="com.jameskelly.popularmovies.MovieGridActivity"
         android:label="@string/app_name"
         android:theme="@style/AppTheme.NoActionBar">
       <intent-filter>
@@ -20,12 +20,12 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-    <activity android:name=".MovieDetailsActivity"
+    <activity android:name="com.jameskelly.popularmovies.MovieDetailsActivity"
       android:theme="@style/AppTheme.NoActionBar"
-      android:parentActivityName=".MovieGridActivity">
+      android:parentActivityName="com.jameskelly.popularmovies.MovieGridActivity">
       <!-- 4.0 support -->
       <meta-data android:name="android.support.PARENT_ACTIVITY"
-        android:value=".MovieGridActivity"/>
+        android:value="com.jameskelly.popularmovies.MovieGridActivity"/>
     </activity>
   </application>
 

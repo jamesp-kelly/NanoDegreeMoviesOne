@@ -1,9 +1,9 @@
-package com.jameskelly.popularmoviesstageone;
+package com.jameskelly.popularmovies;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import com.jameskelly.popularmoviesstageone.model.MovieSort;
+import com.jameskelly.popularmovies.model.MovieSort;
 
 public class PreferenceHelper {
 

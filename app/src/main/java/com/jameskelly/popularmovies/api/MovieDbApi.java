@@ -1,6 +1,6 @@
-package com.jameskelly.popularmoviesstageone.api;
+package com.jameskelly.popularmovies.api;
 
-import com.jameskelly.popularmoviesstageone.model.MovieDBResult;
+import com.jameskelly.popularmovies.model.MovieDBResult;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

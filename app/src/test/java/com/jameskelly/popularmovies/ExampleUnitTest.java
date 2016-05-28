@@ -1,4 +1,4 @@
-package com.jameskelly.popularmoviesstageone;
+package com.jameskelly.popularmovies;
 
 import org.junit.Test;
 

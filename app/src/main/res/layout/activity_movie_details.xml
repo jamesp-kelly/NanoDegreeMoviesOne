@@ -81,20 +81,6 @@
 
         <TextView
             style="@style/DetailsLabel"
-            android:text="@string/popularity_label"
-            />
-
-        <TextView
-            android:id="@+id/movie_popularity"
-            style="@style/DetailsValue"
-            tools:text="7.6"
-            />
-      </LinearLayout>
-
-      <LinearLayout style="@style/DetailsHorizontalLinearLayout">
-
-        <TextView
-            style="@style/DetailsLabel"
             android:text="@string/user_rating_label"
             />
 

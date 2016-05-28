@@ -1,4 +1,4 @@
-package com.jameskelly.popularmoviesstageone;
+package com.jameskelly.popularmovies;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,13 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.jameskelly.popularmoviesstageone.model.Movie;
+import com.jameskelly.popularmovies.model.Movie;
 import com.squareup.picasso.Picasso;
 
 public class MovieDetailsActivity extends AppCompatActivity {
 
   @BindView(R.id.movie_title) TextView movieTitle;
-  @BindView(R.id.movie_popularity) TextView moviePopularity;
   @BindView(R.id.movie_rating) TextView movieRating;
   @BindView(R.id.movie_poster) ImageView posterView;
   @BindView(R.id.movie_release_date) TextView releaseDate;
@@ -51,7 +50,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
           .getColor(android.R.color.transparent));
 
       movieTitle.setText(movie.getName());
-      moviePopularity.setText(String.valueOf(movie.getPopularity()));
       movieRating.setText(String.valueOf(movie.getVoteAverage()));
       releaseDate.setText(movie.getReleaseDate());
       synopsis.setText(movie.getSynopsis());

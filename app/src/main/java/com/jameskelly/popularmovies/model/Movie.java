@@ -1,9 +1,9 @@
-package com.jameskelly.popularmoviesstageone.model;
+package com.jameskelly.popularmovies.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
-import com.jameskelly.popularmoviesstageone.api.MovieDbApi;
+import com.jameskelly.popularmovies.api.MovieDbApi;
 
 public class Movie implements Parcelable {
 

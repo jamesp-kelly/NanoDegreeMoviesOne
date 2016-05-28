@@ -1,4 +1,4 @@
-package com.jameskelly.popularmoviesstageone.model;
+package com.jameskelly.popularmovies.model;
 
 public enum MovieSort {
   POPULAR(0),

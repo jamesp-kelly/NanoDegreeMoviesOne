@@ -1,4 +1,4 @@
-package com.jameskelly.popularmoviesstageone;
+package com.jameskelly.popularmovies;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

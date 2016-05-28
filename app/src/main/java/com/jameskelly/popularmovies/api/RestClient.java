@@ -1,4 +1,4 @@
-package com.jameskelly.popularmoviesstageone.api;
+package com.jameskelly.popularmovies.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
