@@ -1,8 +1,11 @@
 package com.jameskelly.popularmovies.api;
 
 import com.jameskelly.popularmovies.model.MovieDBResult;
+import com.jameskelly.popularmovies.model.Review;
+import com.jameskelly.popularmovies.model.Video;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface MovieDbApi {
@@ -16,5 +19,11 @@ public interface MovieDbApi {
 
   @GET("/3/movie/top_rated")
   Call<MovieDBResult> getTopRatedMovies(@Query("api_key") String apiKey);
+
+  @GET("3/movie/{id}/videos")
+  Call<Video> getTrailers(@Path("id") String movieId, @Query("api_key") String apiKey);
+
+  @GET("3/movie/{id}/reviews")
+  Call<Review> getReviews(@Path("id") String movieId, @Query("api_key") String apiKey);
 
 }
