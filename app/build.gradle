@@ -16,10 +16,10 @@ android {
     release {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-      resValue "string", "api_key", "fe3022d9cbe60044b2ffb09a0c18dd1e"
+      resValue "string", "api_key", "your_api_key"
     }
     debug {
-      resValue "string", "api_key", "fe3022d9cbe60044b2ffb09a0c18dd1e"
+      resValue "string", "api_key", "your_api_key"
     }
   }
 }
