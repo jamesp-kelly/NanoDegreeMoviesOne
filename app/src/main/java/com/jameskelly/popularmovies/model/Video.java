@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 public class Video implements Parcelable {
 
   private static final String YOUTUBE = "YouTube";
+  private static final String YOUTUBE_THUMB_FORMAT = "http://img.youtube.com/vi/%s/hqdefault.jpg";
 
   private String id;
   private String name;
@@ -29,6 +30,14 @@ public class Video implements Parcelable {
 
   public String getSiteKey() {
     return siteKey;
+  }
+
+  public String getThumbnailImage() {
+    if (site.equals(YOUTUBE)) {
+      return String.format(YOUTUBE_THUMB_FORMAT, siteKey);
+    }
+
+    throw new IllegalArgumentException("Thumbnails are not available for this video type");
   }
 
   static final Parcelable.Creator<Video> CREATOR =

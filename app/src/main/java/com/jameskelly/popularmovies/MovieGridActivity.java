@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
 import com.jameskelly.popularmovies.api.MovieDbApi;
 import com.jameskelly.popularmovies.api.RestClient;
 import com.jameskelly.popularmovies.model.Movie;
-import com.jameskelly.popularmovies.model.MovieDBResult;
+import com.jameskelly.popularmovies.model.MovieResult;
 import com.jameskelly.popularmovies.model.MovieSort;
 import java.util.List;
 import retrofit2.Call;
@@ -44,7 +44,7 @@ public class MovieGridActivity extends AppCompatActivity {
     MovieDbApi movieDbApi = RestClient.MovieDbClient();
     String apiKey = getString(R.string.api_key); //gradle file
 
-    final Call<MovieDBResult> displayMovies;
+    final Call<MovieResult> displayMovies;
 
     if (sort == MovieSort.POPULAR) {
       displayMovies = movieDbApi.getPopularMovies(apiKey);
@@ -52,8 +52,8 @@ public class MovieGridActivity extends AppCompatActivity {
       displayMovies = movieDbApi.getTopRatedMovies(apiKey);
     }
 
-    displayMovies.enqueue(new Callback<MovieDBResult>() {
-      @Override public void onResponse(Call<MovieDBResult> call, Response<MovieDBResult> response) {
+    displayMovies.enqueue(new Callback<MovieResult>() {
+      @Override public void onResponse(Call<MovieResult> call, Response<MovieResult> response) {
         if (response.isSuccessful()) {
           displayMovies(response.body().getMovies());
         } else {
@@ -61,7 +61,7 @@ public class MovieGridActivity extends AppCompatActivity {
         }
       }
 
-      @Override public void onFailure(Call<MovieDBResult> call, Throwable t) {
+      @Override public void onFailure(Call<MovieResult> call, Throwable t) {
         displayMovies(null);
       }
     });

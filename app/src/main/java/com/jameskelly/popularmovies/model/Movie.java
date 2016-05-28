@@ -9,6 +9,8 @@ public class Movie implements Parcelable {
 
   public static final String MOVIE_EXTRA = "movie_extra";
 
+  private String id;
+
   @SerializedName("title")
   private String name;
 
@@ -30,6 +32,10 @@ public class Movie implements Parcelable {
   private String releaseDate;
 
   private boolean video;
+
+  public String getId() {
+    return id;
+  }
 
   public String getName() {
     return name;
@@ -85,6 +91,7 @@ public class Movie implements Parcelable {
       };
 
   private Movie(Parcel in) {
+    this.id = in.readString();
     this.name = in.readString();
     this.posterPath = in.readString();
     this.backdropPath = in.readString();
@@ -100,6 +107,7 @@ public class Movie implements Parcelable {
   }
 
   @Override public void writeToParcel(Parcel dest, int flags) {
+    dest.writeString(id);
     dest.writeString(name);
     dest.writeString(posterPath);
     dest.writeString(backdropPath);
