@@ -8,4 +8,7 @@
   <string name="user_rating_label">User Rating:</string>
   <string name="released_label">Released:</string>
   <string name="trailers_title">Trailers:</string>
+  <string name="trailer_chooser">Play video with</string>
+  <string name="reviews_title">Reviews:</string>
+  <string name="movie_poster_description">Movie poster</string>
 </resources>

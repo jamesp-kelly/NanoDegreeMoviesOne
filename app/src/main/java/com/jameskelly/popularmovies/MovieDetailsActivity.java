@@ -1,11 +1,11 @@
 package com.jameskelly.popularmovies;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +20,8 @@ import com.jameskelly.popularmovies.MovieGridAdapter.MovieClickListener;
 import com.jameskelly.popularmovies.api.MovieDbApi;
 import com.jameskelly.popularmovies.api.RestClient;
 import com.jameskelly.popularmovies.model.Movie;
+import com.jameskelly.popularmovies.model.Review;
+import com.jameskelly.popularmovies.model.ReviewResult;
 import com.jameskelly.popularmovies.model.Video;
 import com.jameskelly.popularmovies.model.VideoResult;
 import com.squareup.picasso.Picasso;
@@ -37,6 +39,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
   @BindView(R.id.movie_synopsis) TextView synopsis;
   @BindView(R.id.trailers_heading) TextView trailersHeading;
   @BindView(R.id.trailer_recycler_view) RecyclerView trailerRecycler;
+  @BindView(R.id.reviews_heading) TextView reviewsHeading;
+  @BindView(R.id.review_recycler_view) RecyclerView reviewRecyclerView;
 
   @BindView(R.id.app_bar_layout) AppBarLayout appBarLayout;
   @BindView(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbarLayout;
@@ -67,7 +71,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
       releaseDate.setText(movie.getReleaseDate());
       synopsis.setText(movie.getSynopsis());
 
-      loadTrailers(movie);
+      loadAdditionalInfo(movie);
 
       Picasso.with(this)
           .load(movie.fixImageUrl(movie.getPosterPath()))
@@ -79,22 +83,17 @@ public class MovieDetailsActivity extends AppCompatActivity {
     }
   }
 
-  private void loadTrailers(Movie movie) {
+  private void loadAdditionalInfo(Movie movie) {
     MovieDbApi movieDbApi = RestClient.MovieDbClient();
     final Call<VideoResult> videoResults = movieDbApi.getTrailers(movie.getId(), getString(R.string.api_key));
+    final Call<ReviewResult> reviewResults = movieDbApi.getReviews(movie.getId(),
+        getString(R.string.api_key));
 
     videoResults.enqueue(new Callback<VideoResult>() {
       @Override public void onResponse(Call<VideoResult> call, Response<VideoResult> response) {
         if (response.isSuccessful()) {
           List<Video> videos = response.body().getVideos();
           if (videos.size() > 0) {
-
-            //int dimension = getResources().getDimensionPixelSize(R.dimen.trailer_list_item_height);
-            //dimension = dimension * videos.size(); //todo less hacky
-            //
-            //LinearLayout.LayoutParams layoutParams = new AppBarLayout.LayoutParams(
-            //    ViewGroup.LayoutParams.MATCH_PARENT, dimension);
-
             trailerRecycler.setVisibility(View.VISIBLE);
             trailersHeading.setVisibility(View.VISIBLE);
             displayVideos(videos);
@@ -106,12 +105,49 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
       }
     });
+
+    reviewResults.enqueue(new Callback<ReviewResult>() {
+      @Override public void onResponse(Call<ReviewResult> call, Response<ReviewResult> response) {
+        if (response.isSuccessful()) {
+          List<Review> reviews = response.body().getReviews();
+          if (reviews.size() > 0) {
+            reviewsHeading.setVisibility(View.VISIBLE);
+            reviewRecyclerView.setVisibility(View.VISIBLE);
+            displayReviews(reviews);
+          }
+        }
+      }
+
+      @Override public void onFailure(Call<ReviewResult> call, Throwable t) {
+
+      }
+    });
   }
 
-  private void displayVideos(List<Video> videos) {
+  private void displayReviews(final List<Review> reviews) {
+    final ReviewAdapter reviewAdapter = new ReviewAdapter(reviews, new MovieClickListener() {
+      @Override public void onClick(View view, int position) {
+        Intent reviewIntent = new Intent(Intent.ACTION_VIEW,
+            Uri.parse(reviews.get(position).getUrl()));
+        if (reviewIntent.resolveActivity(getPackageManager()) != null) {
+          startActivity(reviewIntent);
+        }
+      }
+    });
+    reviewRecyclerView.setAdapter(reviewAdapter);
+    reviewRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+  }
+
+  private void displayVideos(final List<Video> videos) {
     TrailerAdapter trailerAdapter = new TrailerAdapter(this, videos, new MovieClickListener() {
       @Override public void onClick(View view, int position) {
-        Snackbar.make(view, "You clicked a trailer", Snackbar.LENGTH_SHORT).show();
+        Intent videoIntent = new Intent(Intent.ACTION_VIEW, videos.get(position).getVideoUri());
+        String chooserTitle = getString(R.string.trailer_chooser);
+        Intent chooser = Intent.createChooser(videoIntent, chooserTitle);
+
+        if (videoIntent.resolveActivity(getPackageManager()) != null) {
+          startActivity(chooser);
+        }
       }
     });
     trailerRecycler.setAdapter(trailerAdapter);
